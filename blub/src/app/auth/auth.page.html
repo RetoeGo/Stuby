@@ -1,0 +1,138 @@
+<div id="mobile">
+  <ion-header>
+        <ion-toolbar>
+          <ion-title>{{ isLogin ? 'Login' : 'Signup' }}</ion-title>
+        </ion-toolbar>
+  </ion-header>
+</div>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-sm="4.5" offset-sm="3.75" text-center>
+        <ion-card>
+          <ion-card-header>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="5" offset="4.5">
+                  <h1>{{ isLogin ? 'Login' : 'Signup' }}</h1>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-header>
+          <ion-card-header>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="5" offset="3.5">
+                  <ion-icon name="person-circle-outline"></ion-icon>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-header>
+          <ion-card-content>
+            <form [formGroup]="credentialForm">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size-sm="10" offset-sm="1">
+                    <ion-item>
+                      <ion-input
+                      placeholder="Email address"
+                      formControlName="email"
+                      autofocus="true"
+                      clearInput="true"
+                      ></ion-input>
+                    </ion-item>
+                    <div *ngIf="(email.dirty || email.touched) && email.errors" class="errors">
+                      <span *ngIf="email.errors?.required">Email is required</span>
+                      <span *ngIf="email.errors?.email">Email is invalid</span>
+                    </div>
+                    <ion-item>
+                      <ion-input
+                        placeholder="Password"
+                        type="password"
+                        formControlName="password"
+                        clearInput="true"
+                      ></ion-input>
+                    </ion-item>
+                    <div *ngIf="(password.dirty || password.touched) && password.errors" class="errors">
+                      <span *ngIf="password.errors?.required">Password is required</span>
+                      <span *ngIf="password.errors?.minlength">Password needs to be atleast 6 characters</span>
+                    </div>
+                    
+            <!--
+            <form #f="ngForm" (ngSubmit)= "onSubmit(f)">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size-sm="10" offset-sm="1">
+                    <ion-list>
+                      <ion-item>
+                        <ion-label position="floating">E-mail</ion-label>
+                        <ion-input
+                          type="email"
+                          ngModel
+                          name="email"
+                          required
+                          email
+                          #emailCtrl="ngModel"
+                        ></ion-input>
+                      </ion-item>
+                      <ion-item
+                        *ngIf = "!emailCtrl.valid && emailCtrl.touched"
+                        lines = "none"
+                      >
+                        <p>Should be a valid email address.</p>
+                      </ion-item>
+                      <ion-item>
+                        <ion-label position="floating">Password</ion-label>
+                        <ion-input
+                          type="password"
+                          ngModel
+                          name="password"
+                          required
+                          minlength = "6"
+                          #passwordCtrl = "ngModel"
+                        ></ion-input>
+                      </ion-item>
+                      <ion-item
+                      *ngIf = "!passwordCtrl.valid && passwordCtrl.touched"
+                      lines = "none"
+                      >
+                      <p>Should at least be 6 characters long.</p>
+                      </ion-item>
+                    </ion-list>
+                  </ion-col>
+                </ion-row>
+
+              -->
+
+                <ion-row>
+                  <ion-col size-sm="10" offset-sm="1">
+                    <ion-button
+                      shape = "round"
+                      type= "button"
+
+                      expand="full"
+                      (click)="onSwitchAuthMode()"
+                    >Switch to {{ isLogin ? 'Signup' : 'Login' }}</ion-button>
+                    <ion-button
+                      shape = "round"
+                      type = "submit"
+                      expand="full"
+                      (click)="onLogin()"
+                      [disabled]= "!f.valid"
+                    >
+                    {{ isLogin ? 'Login' : 'Signup'}}
+                  </ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </form>
+            <!--
+            <ion-spinner color = "primary" *ngIf= "isLoading"></ion-spinner>
+            -->
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

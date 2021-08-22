@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "retoe-1"
+  },
+  "targets": {
+    "retoe-1": {
+      "hosting": {
+        "app": [
+          "retoe-1"
+        ]
+      }
+    }
+  }
+}
